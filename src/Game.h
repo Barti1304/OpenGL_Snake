@@ -5,6 +5,8 @@
 
 #include <windows.h>
 
+#include "Shader.h"
+
 class Game final
 {
 public:
@@ -14,8 +16,17 @@ public:
 	void run();
 
 private:
+	void initOpenGL(int width, int height, const char* title);
+	void initVAO();
+
+
 	void update();
+
+
 	void render() const;
 
+
+	unsigned int vao, vbo;
 	GLFWwindow* window;
+	Shader* shader;
 };

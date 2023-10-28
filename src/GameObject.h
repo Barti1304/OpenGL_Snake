@@ -1,13 +1,15 @@
 #pragma once
 
+constexpr float COLOR_GRAY[3]{ 0.4f, 0.4f, 0.4f };
+
 class GameObject
 {
 public:
-	GameObject(float* color);
+	const float* getCellColor();
 
-	virtual void update() = 0;
-	float* getCellColor();
+protected:
+	void setCellColor(const float* color);
 
 private:
-	float* cellColor;
+	const float* cellColor;
 };

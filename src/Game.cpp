@@ -12,6 +12,7 @@ Game::Game(int windowWidth, int windowHeight, const char* windowTitle, int mapW,
 
 	this->initOpenGL(windowWidth, windowHeight, windowTitle);
 	this->initVAO();
+	this->initMap();
 
 	shader = new Shader("./src/shader.vert", "./src/shader.frag");
 }
@@ -67,6 +68,20 @@ void Game::initVAO()
 	glEnableVertexAttribArray(1);
 }
 
+void Game::initMap()
+{
+	map = new Map(mapWidth, mapHeight);
+
+	const int* mapCode = new int[mapWidth * mapHeight];
+	for (int i = 0; i < mapWidth; i++)
+	{
+		map->setMapObject(i, 0, new Wall);
+		map->setMapObject(i, mapHeight - 1, new Wall);
+		map->setMapObject(0, i, new Wall);
+		map->setMapObject(mapWidth - 1, i, new Wall);
+	}
+}
+
 void Game::update()
 {
 	glfwPollEvents();
@@ -79,31 +94,9 @@ void Game::render() const
 
 	shader->use();
 	glBindVertexArray(vao);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	this->renderSquare(0, 0, COLOR_GRAY);
+	map->renderMap();
 	
 	glfwSwapBuffers(window);
-}
-
-void Game::renderSquare(int x, int y, const float color[3]) const
-{
-	float xPos = -1 + (float(x) / mapWidth);
-	float yPos = 1 - (float(y) / mapHeight);
-	float width = (float(1) / mapHeight) * 2;
-	float height = (float(1) / mapWidth) * 2;
-
-	float coords[]
-	{
-		xPos, yPos,							color[0], color[1], color[2],		
-		xPos, yPos - height,				color[0], color[1], color[2],		
-		xPos + width, yPos - height,		color[0], color[1], color[2],		
-		xPos, yPos,							color[0], color[1], color[2],		
-		xPos + width, yPos,					color[0], color[1], color[2],		
-		xPos + width, yPos - height,		color[0], color[1], color[2]
-	};
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(coords), coords, GL_DYNAMIC_DRAW);
-
-	glDrawArrays(GL_TRIANGLES, 0, 6);
 }

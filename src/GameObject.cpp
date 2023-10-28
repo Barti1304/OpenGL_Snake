@@ -1,11 +1,11 @@
 #include "GameObject.h"
 
-GameObject::GameObject(float* color)
+void GameObject::setCellColor(const float* color)
 {
 	cellColor = color;
 }
 
-float* GameObject::getCellColor()
+const float* GameObject::getCellColor()
 {
 	return cellColor;
 }

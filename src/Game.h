@@ -28,8 +28,11 @@ private:
 	void render() const;
 	void renderSquare(int x, int y, const float color[3]) const;
 
-	int mapWidth, mapHeight;
+
 	unsigned int vao, vbo;
+
+	int mapWidth, mapHeight;
+
 	GLFWwindow* window;
 	Shader* shader;
 };

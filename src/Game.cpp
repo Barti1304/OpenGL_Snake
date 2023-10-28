@@ -94,11 +94,11 @@ void Game::renderSquare(int x, int y, const float color[3]) const
 
 	float coords[]
 	{
-		xPos, yPos,							color[0], color[1], color[2],
-		xPos, yPos - height,				color[0], color[1], color[2],
-		xPos + width, yPos - height,		color[0], color[1], color[2],
-		xPos, yPos,							color[0], color[1], color[2],
-		xPos + width, yPos,					color[0], color[1], color[2],
+		xPos, yPos,							color[0], color[1], color[2],		
+		xPos, yPos - height,				color[0], color[1], color[2],		
+		xPos + width, yPos - height,		color[0], color[1], color[2],		
+		xPos, yPos,							color[0], color[1], color[2],		
+		xPos + width, yPos,					color[0], color[1], color[2],		
 		xPos + width, yPos - height,		color[0], color[1], color[2]
 	};
 

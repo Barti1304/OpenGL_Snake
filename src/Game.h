@@ -7,10 +7,12 @@
 
 #include "Shader.h"
 
+constexpr float COLOR_GRAY[3]{ 0.4f, 0.4f, 0.4f };
+
 class Game final
 {
 public:
-	Game(int width, int height, const char* title);
+	Game(int windowWidth, int windowHeight, const char* windowTitle, int mapW, int mapH);
 	~Game();
 
 	void run();
@@ -24,8 +26,9 @@ private:
 
 
 	void render() const;
+	void renderSquare(int x, int y, const float color[3]) const;
 
-
+	int mapWidth, mapHeight;
 	unsigned int vao, vbo;
 	GLFWwindow* window;
 	Shader* shader;

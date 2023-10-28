@@ -1,6 +1,6 @@
 #include "Wall.h"
 
-Wall::Wall()
+const float* Wall::getCellColor()
 {
-	this->setCellColor(COLOR_GRAY);
+    return COLOR_GRAY;
 }

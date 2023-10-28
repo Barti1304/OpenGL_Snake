@@ -5,34 +5,24 @@
 
 #include <windows.h>
 
-#include "Shader.h"
+#include "Renderer.h"
+#include "Wall.h"
 #include "Map.h"
 
 class Game final
 {
 public:
-	Game(int windowWidth, int windowHeight, const char* windowTitle, int mapW, int mapH);
+	Game(int windowWidth, int windowHeight, const char* windowTitle, int mapWidth, int mapHeight);
 	~Game();
 
 	void run();
 
 private:
-	void initOpenGL(int width, int height, const char* title);
-	void initVAO();
-	void initMap();
-
+	void initMap(int width, int height);
 
 	void update();
-
-
 	void render() const;
 
-
-	unsigned int vao, vbo;
-
-	int mapWidth, mapHeight;
-
-	GLFWwindow* window;
-	Shader* shader;
+	Renderer* renderer;
 	Map* map;
 };

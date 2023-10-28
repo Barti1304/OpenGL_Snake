@@ -5,8 +5,5 @@
 class Wall : public GameObject
 {
 public:
-	Wall();
-
-private:
-
+	const float* getCellColor() override;
 };

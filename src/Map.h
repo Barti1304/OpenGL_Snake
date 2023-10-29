@@ -18,6 +18,11 @@ public:
 	void renderMap() const;
 
 	bool checkCollisionsWithSnake(Snake* snake);
+
+
+	int getWidth();
+	int getHeight();
+
 	
 	GameObject* operator[](int index);
 

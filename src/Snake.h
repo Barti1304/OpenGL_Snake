@@ -24,6 +24,7 @@ public:
 	static void setKeyboardManager(KeyboardManager* keyman);
 
 	int getScore();
+	int getLenght();
 
 private:
 	void move();

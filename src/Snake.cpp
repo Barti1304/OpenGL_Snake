@@ -85,6 +85,11 @@ int Snake::getScore()
 	return size - 5;
 }
 
+int Snake::getLenght()
+{
+	return size;
+}
+
 void Snake::move()
 {
 	switch (direction)

@@ -34,6 +34,16 @@ bool Map::checkCollisionsWithSnake(Snake* snake)
 	return false;
 }
 
+int Map::getWidth()
+{
+	return mapWidth;
+}
+
+int Map::getHeight()
+{
+	return mapHeight;
+}
+
 GameObject* Map::operator[](int index)
 {
 	return map[index];

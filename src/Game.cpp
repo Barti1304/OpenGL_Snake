@@ -91,15 +91,18 @@ void Game::gameOver()
 	std::cout << "Game over!\n"
 		<< "Your score is " << snake->getScore() << '\n';
 
-	if (snake->getScore() > 125)
-		std::cout << "You're killing it!!! B-)\n";
-	else if (snake->getScore() > 60)
-		std::cout << "Wonderful! ^u^";
-	else if (snake->getScore() > 35)
+	float mapPercentage = (snake->getLenght() * 100.0f) / (map->getWidth() * map->getHeight());
+	std::cout << "You've covered " << std::setprecision(3) << mapPercentage << "% of the map!\n";
+
+	if (mapPercentage >= 80)
+		std::cout << "You're killing it!!! ^u^\n";
+	else if (mapPercentage >= 60)
+		std::cout << "Wonderful! :3";
+	else if (mapPercentage >= 35)
 		std::cout << "Awesome! :D";
-	else if (snake->getScore() > 20)
+	else if (mapPercentage >= 20)
 		std::cout << "Pretty good :)";
-	else if (snake->getScore() > 10)
+	else if (mapPercentage >= 5)
 		std::cout << "Okay :|";
 	else
 		std::cout << "Too bad :(";

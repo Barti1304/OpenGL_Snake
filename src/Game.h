@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 
 #include <windows.h>
-#include <algorithm>
+#include <iomanip>
 
 #include "KeyboardManager.h"
 #include "Renderer.h"

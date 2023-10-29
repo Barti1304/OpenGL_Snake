@@ -1,28 +1,29 @@
 #include "Snake.h"
 
+KeyboardManager* Snake::keyboardManager = nullptr;
+
 Snake::Snake(int x, int y, float spd) : GameObject(x, y)
 {
 	SnakeBody::setSnakeSpeed(spd);
 
-	direction = 'd';
+	direction = 'D';
 	speed = 1.0f / spd;
 	size = 8;
 }
 
-void Snake::update(char keyboardInput)
+void Snake::update()
 {
 	static float moveTime = speed;
-
 	if (glfwGetTime() > moveTime)
 	{
 		body.push_back(new SnakeBody(xPos, yPos));
 
+		this->processKeyboardInput();
 		this->move();
 
 		moveTime += speed;
 	}
 
-	direction = keyboardInput;
 
 	while (body.size() > size)
 		body.pop_front();
@@ -39,6 +40,32 @@ void Snake::render()
 	renderer->renderSquare(xPos, yPos, COLOR_BLUE);
 }
 
+void Snake::processKeyboardInput()
+{
+	switch (keyboardManager->getKeyboardInput())
+	{
+	case GLFW_KEY_W:
+		if (direction != 'S')
+			direction = 'W';
+			break;
+
+	case GLFW_KEY_A:
+		if (direction != 'D')
+			direction = 'A';
+			break;
+
+	case GLFW_KEY_S:
+		if (direction != 'W')
+			direction = 'S';
+			break;
+
+	case GLFW_KEY_D:
+		if (direction != 'A')
+			direction = 'D';
+			break;
+	}
+}
+
 int Snake::getSnakeX()
 {
 	return xPos;
@@ -49,20 +76,25 @@ int Snake::getSnakeY()
 	return yPos;
 }
 
+void Snake::setKeyboardManager(KeyboardManager* keyman)
+{
+	keyboardManager = keyman;
+}
+
 void Snake::move()
 {
 	switch (direction)
 	{
-	case 'w':
+	case 'W':
 		yPos -= 1;
 		break;
-	case 'a':
+	case 'A':
 		xPos -= 1;
 		break;
-	case 's':
+	case 'S':
 		yPos += 1;
 		break;
-	case 'd':
+	case 'D':
 		xPos += 1;
 		break;
 	}

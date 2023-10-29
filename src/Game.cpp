@@ -2,15 +2,15 @@
 
 Game::Game(int windowWidth, int windowHeight, const char* windowTitle, int mapWidth, int mapHeight)
 {
+	keyboardManager = new KeyboardManager;
+
 	renderer = new Renderer(windowWidth, windowHeight, windowTitle, mapWidth, mapHeight);
 	GameObject::setGameObjectRenderer(renderer);
 
 	map = new Map(mapWidth, mapHeight);
 	
-	snake = new Snake(mapWidth * 0.5f, mapHeight * 0.5f, 3);
-
-
-	keyboardInput = 'd';
+	snake = new Snake(mapWidth * 0.5f, mapHeight * 0.5f, 5);
+	Snake::setKeyboardManager(keyboardManager);
 }
 
 Game::~Game()
@@ -31,11 +31,14 @@ void Game::run()
 
 void Game::update()
 {
+	// keyboard input
 	glfwPollEvents();
+	keyboardManager->captureKeyboardInput(renderer->getWindow());
+	this->processKeyboardInput(keyboardManager);
 
-	this->processInput();
 
-	snake->update(keyboardInput);
+	// update snake and its body
+	snake->update();
 }
 
 void Game::render() const
@@ -51,17 +54,12 @@ void Game::render() const
 	glfwSwapBuffers(renderer->getWindow());
 }
 
-void Game::processInput()
+void Game::processKeyboardInput(KeyboardManager* keyman)
 {
-	if (glfwGetKey(renderer->getWindow(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	switch (keyman->getKeyboardInput())
+	{
+	case GLFW_KEY_ESCAPE:
 		glfwSetWindowShouldClose(renderer->getWindow(), true);
-
-	if (glfwGetKey(renderer->getWindow(), GLFW_KEY_W) == GLFW_PRESS)
-		keyboardInput = 'w';
-	if (glfwGetKey(renderer->getWindow(), GLFW_KEY_A) == GLFW_PRESS)
-		keyboardInput = 'a';
-	if (glfwGetKey(renderer->getWindow(), GLFW_KEY_S) == GLFW_PRESS)
-		keyboardInput = 's';
-	if (glfwGetKey(renderer->getWindow(), GLFW_KEY_D) == GLFW_PRESS)
-		keyboardInput = 'd';
+		break;
+	}
 }

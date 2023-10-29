@@ -4,7 +4,9 @@
 #include <GLFW/glfw3.h>
 
 #include <windows.h>
+#include <algorithm>
 
+#include "KeyboardManager.h"
 #include "Renderer.h"
 #include "Map.h"
 #include "Snake.h"
@@ -22,11 +24,10 @@ private:
 	void update();
 	void render() const;
 
-	void processInput();
+	void processKeyboardInput(KeyboardManager* keyman);
 
+	KeyboardManager* keyboardManager;
 	Renderer* renderer;
 	Map* map;
 	Snake* snake;
-
-	char keyboardInput;
 };

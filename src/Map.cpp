@@ -22,7 +22,7 @@ void Map::renderMap(Renderer* renderer) const
 {
 	for (int i = 0; i < mapWidth * mapHeight; i++)
 		if (map[i] != nullptr)
-			renderer->renderSquare((i % mapWidth), (i / mapWidth), mapWidth, mapHeight, map[i]->getCellColor());
+			renderer->renderSquare((i % mapWidth), (i / mapWidth), map[i]->getCellColor());
 }
 
 GameObject* Map::operator[](int index)

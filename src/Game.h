@@ -6,8 +6,9 @@
 #include <windows.h>
 
 #include "Renderer.h"
-#include "Wall.h"
 #include "Map.h"
+#include "Snake.h"
+#include "Wall.h"
 
 class Game final
 {
@@ -18,11 +19,14 @@ public:
 	void run();
 
 private:
-	void initMap(int width, int height);
-
 	void update();
 	void render() const;
 
+	void processInput();
+
 	Renderer* renderer;
 	Map* map;
+	Snake* snake;
+
+	char keyboardInput;
 };

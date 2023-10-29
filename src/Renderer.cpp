@@ -5,11 +5,14 @@ void framebufferSizeCallback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
-Renderer::Renderer(int windowWidth, int windowHeight, const char* windowTitle)
+Renderer::Renderer(int windowWidth, int windowHeight, const char* windowTitle, int mapW, int mapH)
 {
 	this->initWindow(windowWidth, windowHeight, windowTitle);
 	this->initShader();
 	this->initVAO();
+
+	mapWidth = mapW;
+	mapHeight = mapH;
 }
 
 Renderer::~Renderer()
@@ -59,7 +62,7 @@ void Renderer::initVAO()
 	glEnableVertexAttribArray(1);
 }
 
-void Renderer::renderSquare(int x, int y, int mapWidth, int mapHeight, const float* color) const
+void Renderer::renderSquare(int x, int y, const float* color) const
 {
 	float xPos = -1 + (float(x) / mapWidth) * 2;
 	float yPos = 1 - (float(y) / mapHeight) * 2;
@@ -81,7 +84,7 @@ void Renderer::renderSquare(int x, int y, int mapWidth, int mapHeight, const flo
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void Renderer::initRenderer()
+GLFWwindow* Renderer::getWindow()
 {
-
+	return window;
 }

@@ -9,12 +9,12 @@
 
 #include "Wall.h"
 
-class Map
+class Map final
 {
 public:
 	Map(int width, int height);
 
-	void renderMap(Renderer* renderer) const;
+	void renderMap() const;
 	
 	GameObject* operator[](int index);
 

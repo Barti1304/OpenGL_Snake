@@ -5,5 +5,7 @@
 class Wall : public GameObject
 {
 public:
-	const float* getCellColor() override;
+	Wall(int x, int y);
+
+	void render() override;
 };

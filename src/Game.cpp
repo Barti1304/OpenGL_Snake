@@ -3,10 +3,14 @@
 Game::Game(int windowWidth, int windowHeight, const char* windowTitle, int mapWidth, int mapHeight)
 {
 	renderer = new Renderer(windowWidth, windowHeight, windowTitle, mapWidth, mapHeight);
-	
+	GameObject::setGameObjectRenderer(renderer);
+
 	map = new Map(mapWidth, mapHeight);
 	
 	snake = new Snake(mapWidth * 0.5f, mapHeight * 0.5f, 3);
+
+
+	keyboardInput = 'd';
 }
 
 Game::~Game()
@@ -40,8 +44,8 @@ void Game::render() const
 	glClear(GL_COLOR_BUFFER_BIT);
 
 
-	map->renderMap(renderer);
-	snake->render(renderer);
+	map->renderMap();
+	snake->render();
 	
 
 	glfwSwapBuffers(renderer->getWindow());

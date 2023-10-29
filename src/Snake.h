@@ -2,17 +2,18 @@
 
 #include "GameObject.h"
 #include "Renderer.h"
+#include "SnakeBody.h"
 
-class Snake : public GameObject
+#include <list>
+
+class Snake final : public GameObject
 {
 public:
 	Snake(int x, int y, float spd);
 
 	void update(char keyboardInput);
 
-	void render(Renderer* renderer);
-
-	const float* getCellColor() override;
+	void render() override;
 
 	int getSnakeX();
 	int getSnakeY();
@@ -20,7 +21,9 @@ public:
 private:
 	void move();
 
-	int xPos, yPos;
 	char direction;
 	float speed;
+	int size;
+
+	std::list<SnakeBody*> body;
 };

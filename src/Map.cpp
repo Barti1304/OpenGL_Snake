@@ -11,18 +11,18 @@ Map::Map(int width, int height)
 
 	for (int i = 0; i < mapWidth; i++)
 	{
-		map[i] = new Wall;
-		map[i + (mapHeight - 1) * mapWidth] = new Wall;
-		map[i * mapWidth] = new Wall;
-		map[i * mapWidth + mapHeight - 1] = new Wall;
+		map[i] = new Wall(i, 0);
+		map[i + (mapHeight - 1) * mapWidth] = new Wall(i, mapHeight - 1);
+		map[i * mapWidth] = new Wall(0, i);
+		map[i * mapWidth + mapHeight - 1] = new Wall(mapWidth - 1, i);
 	}
 }
 
-void Map::renderMap(Renderer* renderer) const
+void Map::renderMap() const
 {
-	for (int i = 0; i < mapWidth * mapHeight; i++)
-		if (map[i] != nullptr)
-			renderer->renderSquare((i % mapWidth), (i / mapWidth), map[i]->getCellColor());
+	for (auto obj : map)
+		if (obj != nullptr)
+			obj->render();
 }
 
 GameObject* Map::operator[](int index)

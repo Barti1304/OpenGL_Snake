@@ -1,12 +1,12 @@
 #include "Snake.h"
 
-Snake::Snake(int x, int y, float spd)
+Snake::Snake(int x, int y, float spd) : GameObject(x, y)
 {
-	xPos = x;
-	yPos = y;
-	speed = 1.0f / spd;
+	SnakeBody::setSnakeSpeed(spd);
 
 	direction = 'd';
+	speed = 1.0f / spd;
+	size = 8;
 }
 
 void Snake::update(char keyboardInput)
@@ -15,22 +15,28 @@ void Snake::update(char keyboardInput)
 
 	if (glfwGetTime() > moveTime)
 	{
+		body.push_back(new SnakeBody(xPos, yPos));
+
 		this->move();
 
 		moveTime += speed;
 	}
 
 	direction = keyboardInput;
+
+	while (body.size() > size)
+		body.pop_front();
+
+	for (auto it = body.begin(); it != body.end(); it++)
+		(*it)->update();
 }
 
-void Snake::render(Renderer* renderer)
+void Snake::render()
 {
+	for (auto it = body.begin(); it != body.end(); it++)
+		(*it)->render();
+
 	renderer->renderSquare(xPos, yPos, COLOR_BLUE);
-}
-
-const float* Snake::getCellColor()
-{
-    return COLOR_BLUE;
 }
 
 int Snake::getSnakeX()

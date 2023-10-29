@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\SnakeBody.cpp" />
     <ClCompile Include="src\Snake.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Map.cpp" />
@@ -29,6 +30,7 @@
     <ClCompile Include="src\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\SnakeBody.h" />
     <ClInclude Include="src\Snake.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\GameObject.h" />

@@ -1,6 +1,8 @@
 #include "Wall.h"
 
-const float* Wall::getCellColor()
+Wall::Wall(int x, int y) : GameObject(x, y) {}
+
+void Wall::render()
 {
-    return COLOR_GRAY;
+	renderer->renderSquare(xPos, yPos, COLOR_GRAY);
 }

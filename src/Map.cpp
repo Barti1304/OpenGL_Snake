@@ -25,6 +25,15 @@ void Map::renderMap() const
 			obj->render();
 }
 
+bool Map::checkCollisionsWithSnake(Snake* snake)
+{
+	for (auto wall : map)
+		if (wall && wall->getXPos() == snake->getXPos() && wall->getYPos() == snake->getYPos())
+			return true;
+
+	return false;
+}
+
 GameObject* Map::operator[](int index)
 {
 	return map[index];

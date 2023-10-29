@@ -88,3 +88,14 @@ GLFWwindow* Renderer::getWindow()
 {
 	return window;
 }
+
+void Renderer::updateTitleBar(int src)
+{
+	std::string title = "OpenGL - Snake | Score: " + std::to_string(src) + 
+		" | Elapsed time: " + std::to_string((int)(glfwGetTime()) / 60) + ':';
+
+	title += (std::to_string((int)(glfwGetTime()) % 60).size() == 1) ? "0" : "";
+	title += std::to_string((int)(glfwGetTime()) % 60);
+
+	glfwSetWindowTitle(window, title.c_str());
+}

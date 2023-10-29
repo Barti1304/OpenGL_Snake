@@ -8,7 +8,7 @@ Snake::Snake(int x, int y, float spd) : GameObject(x, y)
 
 	direction = 'D';
 	speed = 1.0f / spd;
-	size = 8;
+	size = 5;
 }
 
 void Snake::update()
@@ -40,6 +40,15 @@ void Snake::render()
 	renderer->renderSquare(xPos, yPos, COLOR_BLUE);
 }
 
+bool Snake::checkCollisionsWithBody()
+{
+	for (auto bodyPart = body.begin(); bodyPart != body.end(); bodyPart++)
+		if ((*bodyPart)->getXPos() == this->getXPos() && (*bodyPart)->getYPos() == this->getYPos())
+			return true;
+
+	return false;
+}
+
 void Snake::processKeyboardInput()
 {
 	switch (keyboardManager->getKeyboardInput())
@@ -66,19 +75,14 @@ void Snake::processKeyboardInput()
 	}
 }
 
-int Snake::getSnakeX()
-{
-	return xPos;
-}
-
-int Snake::getSnakeY()
-{
-	return yPos;
-}
-
 void Snake::setKeyboardManager(KeyboardManager* keyman)
 {
 	keyboardManager = keyman;
+}
+
+int Snake::getScore()
+{
+	return size - 5;
 }
 
 void Snake::move()

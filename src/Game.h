@@ -26,8 +26,11 @@ private:
 
 	void processKeyboardInput(KeyboardManager* keyman);
 
+	void gameConfig();
+	void gameOver();
+
 	KeyboardManager* keyboardManager;
 	Renderer* renderer;
-	Map* map;
 	Snake* snake;
+	Map* map;
 };

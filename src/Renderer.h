@@ -15,6 +15,8 @@ public:
 
 	GLFWwindow* getWindow();
 
+	void updateTitleBar(int src);
+
 private:
 	void initWindow(int width, int height, const char* title);
 	void initShader();

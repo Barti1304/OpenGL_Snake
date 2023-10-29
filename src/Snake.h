@@ -17,13 +17,13 @@ public:
 	void render() override;
 
 
+	bool checkCollisionsWithBody();
+
 	void processKeyboardInput();
-
-
-	int getSnakeX();
-	int getSnakeY();
-
+	
 	static void setKeyboardManager(KeyboardManager* keyman);
+
+	int getScore();
 
 private:
 	void move();

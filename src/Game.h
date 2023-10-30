@@ -9,14 +9,14 @@
 #include "KeyboardManager.h"
 #include "Renderer.h"
 #include "Map.h"
-#include "Snake.h"
 #include "Wall.h"
+#include "Snake.h"
+#include "Apple.h"
 
 class Game final
 {
 public:
 	Game(int windowWidth, int windowHeight, const char* windowTitle, int mapWidth, int mapHeight);
-	~Game();
 
 	void run();
 
@@ -28,9 +28,14 @@ private:
 
 	void gameConfig();
 	void gameOver();
+	void printPostGameInfo();
+
+	bool isAppleTouchingSnake();
 
 	KeyboardManager* keyboardManager;
 	Renderer* renderer;
-	Snake* snake;
 	Map* map;
+
+	Snake* snake;
+	Apple* apple;
 };

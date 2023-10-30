@@ -25,15 +25,6 @@ void Map::renderMap() const
 			obj->render();
 }
 
-bool Map::checkCollisionsWithSnake(Snake* snake)
-{
-	for (auto wall : map)
-		if (wall && wall->getXPos() == snake->getXPos() && wall->getYPos() == snake->getYPos())
-			return true;
-
-	return false;
-}
-
 int Map::getWidth()
 {
 	return mapWidth;
@@ -42,6 +33,11 @@ int Map::getWidth()
 int Map::getHeight()
 {
 	return mapHeight;
+}
+
+std::vector<GameObject*> Map::getMapContainer()
+{
+	return map;
 }
 
 GameObject* Map::operator[](int index)

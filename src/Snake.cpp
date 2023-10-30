@@ -40,11 +40,28 @@ void Snake::render()
 	renderer->renderSquare(xPos, yPos, COLOR_BLUE);
 }
 
-bool Snake::checkCollisionsWithBody()
+bool Snake::checkCollisions(std::vector<GameObject*> container)
 {
-	for (auto bodyPart = body.begin(); bodyPart != body.end(); bodyPart++)
-		if ((*bodyPart)->getXPos() == this->getXPos() && (*bodyPart)->getYPos() == this->getYPos())
+	for (auto obj : container)
+		if (obj && obj->getXPos() == this->getXPos() && obj->getYPos() == this->getYPos())
 			return true;
+
+	return false;
+}
+
+bool Snake::checkCollisions(std::list<SnakeBody*> container)
+{
+	for (auto obj : container)
+		if (obj && obj->getXPos() == this->getXPos() && obj->getYPos() == this->getYPos())
+			return true;
+
+	return false;
+}
+
+bool Snake::checkCollisions(int x, int y)
+{
+	if (this->getXPos() == x && this->getYPos() == y)
+		return true;
 
 	return false;
 }
@@ -88,6 +105,16 @@ int Snake::getScore()
 int Snake::getLenght()
 {
 	return size;
+}
+
+void Snake::addPoint()
+{
+	size++;
+}
+
+std::list<SnakeBody*> Snake::getBodyContainer()
+{
+	return body;
 }
 
 void Snake::move()

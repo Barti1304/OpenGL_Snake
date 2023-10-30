@@ -17,12 +17,11 @@ public:
 
 	void renderMap() const;
 
-	bool checkCollisionsWithSnake(Snake* snake);
-
 
 	int getWidth();
 	int getHeight();
 
+	std::vector<GameObject*> getMapContainer();
 	
 	GameObject* operator[](int index);
 

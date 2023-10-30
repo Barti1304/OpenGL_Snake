@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "KeyboardManager.h"
 #include "SnakeBody.h"
+#include "Map.h"
 
 #include <list>
 
@@ -17,7 +18,9 @@ public:
 	void render() override;
 
 
-	bool checkCollisionsWithBody();
+	bool checkCollisions(std::vector<GameObject*> container);
+	bool checkCollisions(std::list<SnakeBody*> container);
+	bool checkCollisions(int x, int y);
 
 	void processKeyboardInput();
 	
@@ -25,6 +28,10 @@ public:
 
 	int getScore();
 	int getLenght();
+
+	void addPoint();
+
+	std::list<SnakeBody*> getBodyContainer();
 
 private:
 	void move();

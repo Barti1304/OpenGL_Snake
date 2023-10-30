@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Apple.cpp" />
     <ClCompile Include="src\KeyboardManager.cpp" />
     <ClCompile Include="src\SnakeBody.cpp" />
     <ClCompile Include="src\Snake.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="src\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Apple.h" />
     <ClInclude Include="src\KeyboardManager.h" />
     <ClInclude Include="src\SnakeBody.h" />
     <ClInclude Include="src\Snake.h" />

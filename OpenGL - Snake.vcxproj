@@ -44,8 +44,10 @@
     <ClInclude Include="src\Wall.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\shader.frag" />
-    <None Include="src\shader.vert" />
+    <None Include="src\shader2D.frag" />
+    <None Include="src\shader2D.vert" />
+    <None Include="src\shader3D.frag" />
+    <None Include="src\shader3D.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

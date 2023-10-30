@@ -16,7 +16,7 @@
 class Game final
 {
 public:
-	Game(int windowWidth, int windowHeight, const char* windowTitle, int mapWidth, int mapHeight);
+	Game(int windowWidth, int windowHeight, const char* windowTitle, int mapWidth, int mapHeight, int dimensions);
 
 	void run();
 

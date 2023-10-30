@@ -2,7 +2,7 @@
 
 #define DISABLE_CONFIG
 
-Game::Game(int windowWidth, int windowHeight, const char* windowTitle, int mapWidth, int mapHeight)
+Game::Game(int windowWidth, int windowHeight, const char* windowTitle, int mapWidth, int mapHeight, int dimensions)
 {
 #ifndef DISABLE_CONFIG
 	this->gameConfig();
@@ -10,7 +10,7 @@ Game::Game(int windowWidth, int windowHeight, const char* windowTitle, int mapWi
 
 	keyboardManager = new KeyboardManager;
 
-	renderer = new Renderer(windowWidth, windowHeight, windowTitle, mapWidth, mapHeight);
+	renderer = new Renderer(windowWidth, windowHeight, windowTitle, mapWidth, mapHeight, dimensions);
 	GameObject::setGameObjectRenderer(renderer);
 
 	map = new Map(mapWidth, mapHeight);
@@ -69,7 +69,7 @@ void Game::update()
 void Game::render() const
 {
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
 	apple->render();
